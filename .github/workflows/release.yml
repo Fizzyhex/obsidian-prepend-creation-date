@@ -1,0 +1,32 @@
+name: Publish Obsidian release
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@v4
+
+      - name: Ensure the tag matches the plugin version
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: |
+          manifest_version=$(jq -r '.version' manifest.json)
+          test "$TAG_NAME" = "$manifest_version"
+
+      - name: Create GitHub release with Obsidian plugin files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --generate-notes \
+            main.js \
+            manifest.json
