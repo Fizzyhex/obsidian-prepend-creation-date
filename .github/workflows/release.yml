@@ -31,11 +31,22 @@ jobs:
             main.js
             manifest.json
 
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+
+      - name: Build plugin
+        run: |
+          mkdir dist -p
+          npm install
+          npm run build
+
       - name: Create GitHub release with Obsidian plugin files
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "${{ github.ref_name }}" \
             --generate-notes \
-            main.js \
+            dist/main.js \
             manifest.json

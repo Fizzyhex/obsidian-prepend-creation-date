@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "scripts": {
+    "build": "esbuild main.js --bundle --format=cjs --outfile=dist/main.js --external:obsidian"
+  },
+  "dependencies": {
+    "obsidian": "^1.13.1"
+  }
+}
