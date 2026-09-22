@@ -11,7 +11,7 @@ function formatDate(timestamp) {
 export default class PrependCreationDatePlugin extends Plugin {
   async onload() {
     const addMenuItem = (menu, files) => {
-      const notes = files.filter((file) => file instanceof TFile && file.extension === "md");
+      const notes = files.filter((file) => file instanceof TFile);
       if (notes.length === 0) return;
 
       menu.addItem((item) => {
