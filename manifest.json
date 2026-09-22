@@ -1,7 +1,7 @@
 {
   "id": "prepend-creation-date",
   "name": "Prepend Creation Date",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minAppVersion": "1.4.0",
   "description": "Provides shortcuts to prefix files with their creation dates.",
   "author": "fizzy",
